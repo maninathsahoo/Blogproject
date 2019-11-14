@@ -1,0 +1,35 @@
+{% extends "blog/base.html"%}
+{% block content %}
+    <h1>About Blog</h1>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <h2>Blog Page</h2>
+    {% for i in pageobject %}
+    {{i.title}}<br>
+    {{i.author}}<br>
+    {{i.date_posted}}<br>
+    {{i.content}}<br>
+    {% endfor %}
+    
+    <div>
+        {% if pageobject.has_previous %}
+              <a href="?page={{pageobject.previous_page_number}}">Previous</a>
+        {% endif %}
+    
+    
+        {{pageobject.number}} of {{p.num_pages}}
+    
+    
+          {% if pageobject.has_next %}
+              <a href="?page={{pageobject.next_page_number}}">Next</a>
+          {% endif %}
+    
+       </div>
+    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5">
+{% endblock content %}
